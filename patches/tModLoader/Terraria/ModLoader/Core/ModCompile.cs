@@ -52,7 +52,17 @@ internal class ModCompile
 		}
 	}
 
-	public static readonly string ModSourcePath = Path.Combine(Program.SavePathShared, "ModSources");
+	// agent: haiku | 2026-10-18 | Add -modsources launch override | v 1.0.0 | 8fc20b
+	/// <summary>Resolves the ModSources folder, honoring the -modsources launch argument.</summary>
+	/// <returns>string: full path from -modsources when non-empty, else the default ModSources folder under the shared save path.</returns>
+	private static string ResolveModSourcePath()
+	{
+		return Program.LaunchParameters.TryGetValue("-modsources", out var path) && !string.IsNullOrEmpty(path)
+			? Path.GetFullPath(path)
+			: Path.Combine(Program.SavePathShared, "ModSources");
+	}
+
+	public static readonly string ModSourcePath = ResolveModSourcePath();
 
 	internal static string[] FindModSources()
 	{

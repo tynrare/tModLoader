@@ -20,7 +20,7 @@ public enum DistributionPlatform
 internal static class InstallVerifier
 {
 	private static string VanillaExe = "Terraria.exe";
-	private const string TerrariaVersion = "1.4.5.6";
+	private const string TerrariaVersion = "1.4.5.8";
 	private static string CheckExe = $"Terraria_v{TerrariaVersion}.exe"; // This should match the hashes. {Main.versionNumber}
 	internal static string vanillaExePath; // Only reliable for GOG installs
 
